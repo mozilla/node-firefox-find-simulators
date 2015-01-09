@@ -52,7 +52,7 @@ function flatten(arrays) {
 
 
 function getSimulatorInfo(extensionDir) {
-  var simulatorRegex = /fxos_(.*)_simulator@mozilla.org$/;
+  var simulatorRegex = /fxos_(.*)_simulator@mozilla\.org$/;
   var matches = simulatorRegex.exec(extensionDir);
   if(matches && matches[1]) {
     var version = matches[1].replace('_', '.');
