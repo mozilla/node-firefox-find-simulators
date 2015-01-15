@@ -1,3 +1,5 @@
+'use strict';
+
 var findSimulators = require('../.');
 
 // Only find simulators at version 2.0
