@@ -32,7 +32,9 @@ npm install
 
 ### npm
 
-This module is not on npm yet.
+```bash
+npm install node-firefox-find-simulators
+```
 
 ## Usage
 
@@ -49,8 +51,7 @@ If no `options` are provided, or if `options` is an empty `Object` (`{}`), then 
 ### Finding simulators
 
 ```javascript
-var findSimulators = require('./node-firefox-find-simulators');
-// (or require('node-firefox-find-simulators') when it's on npm)
+var findSimulators = require('node-firefox-find-simulators');
 
 // Return all installed simulators
 findSimulators().then(results) {
