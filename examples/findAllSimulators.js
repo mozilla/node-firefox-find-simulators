@@ -1,3 +1,5 @@
+'use strict';
+
 var findSimulators = require('../');
 
 findSimulators().then(function(results) {

@@ -1,3 +1,7 @@
+'use strict';
+
+// See https://github.com/jshint/jshint/issues/1747 for context
+/* global -Promise */
 var Promise = require('es6-promise').Promise;
 var fs = require('fs');
 var path = require('path');
@@ -41,7 +45,7 @@ function listDirectories(directoryPath) {
 
 
 function flatten(arrays) {
-  if(arrays.length === 0) {
+  if (arrays.length === 0) {
     return [];
   } else {
     var firstElement = arrays[0];
@@ -54,7 +58,7 @@ function flatten(arrays) {
 function getSimulatorInfo(extensionDir) {
   var simulatorRegex = /fxos_(.*)_simulator@mozilla\.org$/;
   var matches = simulatorRegex.exec(extensionDir);
-  if(matches && matches[1]) {
+  if (matches && matches[1]) {
     var version = matches[1].replace('_', '.');
     return {
       version: version,
@@ -84,9 +88,9 @@ function findSimulators(options) {
     return info !== null;
   });
 
-  if(options.version) {
+  if (options.version) {
     var version = options.version;
-    if(version instanceof String) {
+    if (version instanceof String) {
       version = [ version ];
     }
     simulators = simulators.filter(function(sim) {
