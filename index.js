@@ -56,13 +56,19 @@ function flatten(arrays) {
 
 
 function getSimulatorInfo(extensionDir) {
+  var binaryDir = currentPlatform.simulatorBinary;
   var simulatorRegex = /fxos_(.*)_simulator@mozilla\.org$/;
   var matches = simulatorRegex.exec(extensionDir);
   if (matches && matches[1]) {
     var version = matches[1].replace('_', '.');
+
+    if (process.platform === 'darwin') {
+      binaryDir = binaryDir['version' + matches[1]] || binaryDir.standardPath;
+    }
+
     return {
       version: version,
-      bin: path.join(extensionDir, currentPlatform.simulatorBinary),
+      bin: path.join(extensionDir, binaryDir),
       profile: path.join(extensionDir, 'profile')
     };
   } else {
