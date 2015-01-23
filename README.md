@@ -56,7 +56,7 @@ If no `options` are provided, or if `options` is an empty `Object` (`{}`), then 
 var findSimulators = require('node-firefox-find-simulators');
 
 // Return all installed simulators
-findSimulators().then(results) {
+findSimulators().then(function(results) {
   console.log(results);
 });
 
