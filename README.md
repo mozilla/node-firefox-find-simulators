@@ -2,6 +2,8 @@
 
 > Find installed Firefox OS simulators.
 
+[![Install with NPM](https://nodei.co/npm/node-firefox-find-simulators.png?downloads=true&stars=true)](https://nodei.co/npm/node-firefox-find-simulators/)
+
 This is part of the [node-firefox](https://github.com/mozilla/node-firefox) project.
 
 ## Current limitations
