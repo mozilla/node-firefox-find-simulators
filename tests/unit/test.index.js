@@ -15,7 +15,7 @@ module.exports = {
     var currentPlatform = platform(process.platform);
     var vars = {
       PROFILEDIR: currentPlatform.firefoxProfilesDir,
-      BINARY: currentPlatform.simulatorBinary.standardPath || currentPlatform.simulatorBinary
+      BINARY: currentPlatform.simulatorBinary
     };
 
     var expected = [
@@ -44,18 +44,18 @@ module.exports = {
       var item = expected[expectedIndex];
       for (var itemKey in item) {
         for (var varKey in vars) {
-          item[itemKey] = item[itemKey].replace('%' + varKey + '%', vars[varKey]);
+          var computedValue;
+          if (typeof vars[varKey] === 'function') {
+            computedValue = vars[varKey].call(item, item.version.replace('.', '_')); 
+          }
+          else {
+            computedValue = vars[varKey];
+          }
+          item[itemKey] = item[itemKey].replace('%' + varKey + '%', computedValue);
         }
         if (process.platform === 'win32') {
           // HACK: Correct expected path when running tests on win32
           item[itemKey] = item[itemKey].replace(/\//g,'\\');
-        }
-
-        // HACK: Correct expected path when running tests for 1.3 simulator on darwin
-        if (process.platform === 'darwin' && item.version === '1.3') {
-          // HACK: Because we need to use an underscore here.
-          /*jshint camelcase: false */
-          item.bin = item.bin.replace('%BINARY%', currentPlatform.simulatorBinary.version1_3);
         }
       }
     }
