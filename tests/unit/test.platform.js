@@ -37,7 +37,7 @@ module.exports = {
   'win32': function(test) {
     testDeepEqualPaths(test, platform('win32'), {
       // HACK: On posix platforms, path.join results in this
-      firefoxProfilesDir: 'C:\\Users\\testuser/AppData\\Local\\Mozilla\\Firefox\\Profiles',
+      firefoxProfilesDir: 'C:\\Users\\testuser/AppData\\Roaming\\Mozilla\\Firefox\\Profiles',
       simulatorBinary: 'b2g\\b2g-bin.exe'
     });
     test.done();
