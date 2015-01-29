@@ -19,12 +19,14 @@ module.exports = {
   },
 
   'darwin': function(test) {
+    // This is here because we use underscores in the paths to these binaries.
+    /*jshint camelcase: false*/
     testDeepEqualPaths(test, platform('darwin'), {
       firefoxProfilesDir: '/home/testuser/Library/Application Support/Firefox/Profiles',
       simulatorBinary: {
         standardPath: 'b2g/B2G.app/Contents/MacOS/b2g-bin',
-        version1x2: 'resources/fxos_1_2_simulator/data/mac64/B2G.app/Contents/MacOS/b2g-bin',
-        version1x3: 'resources/fxos_1_3_simulator/data/mac64/B2G.app/Contents/MacOS/b2g-bin'
+        version1_2: 'resources/fxos_1_2_simulator/data/mac64/B2G.app/Contents/MacOS/b2g-bin',
+        version1_3: 'resources/fxos_1_3_simulator/data/mac64/B2G.app/Contents/MacOS/b2g-bin'
       }
     });
     test.done();

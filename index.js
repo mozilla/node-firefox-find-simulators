@@ -63,7 +63,7 @@ function getSimulatorInfo(extensionDir) {
     var version = matches[1].replace('_', '.');
 
     if (process.platform === 'darwin') {
-      binaryDir = binaryDir['version' + matches[1].replace('_', 'x')] || binaryDir.standardPath;
+      binaryDir = binaryDir['version' + matches[1]] || binaryDir.standardPath;
     }
 
     return {

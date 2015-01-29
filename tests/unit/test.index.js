@@ -50,9 +50,12 @@ module.exports = {
           // HACK: Correct expected path when running tests on win32
           item[itemKey] = item[itemKey].replace(/\//g,'\\');
         }
-          // HACK: Correct expected path when running tests for 1.3 simulator on darwin
+
+        // HACK: Correct expected path when running tests for 1.3 simulator on darwin
         if (process.platform === 'darwin' && item.version === '1.3') {
-          item.bin = item.bin.replace('%BINARY%', currentPlatform.simulatorBinary.version1x3);
+          // HACK: Because we need to use an underscore here.
+          /*jshint camelcase: false */
+          item.bin = item.bin.replace('%BINARY%', currentPlatform.simulatorBinary.version1_3);
         }
       }
     }
