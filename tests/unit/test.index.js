@@ -15,7 +15,7 @@ module.exports = {
     var currentPlatform = platform(process.platform);
     var vars = {
       PROFILEDIR: currentPlatform.firefoxProfilesDir,
-      BINARY: currentPlatform.simulatorBinary
+      BINARY: currentPlatform.simulatorBinary.standardPath || currentPlatform.simulatorBinary
     };
 
     var expected = [
@@ -49,6 +49,10 @@ module.exports = {
         if (process.platform === 'win32') {
           // HACK: Correct expected path when running tests on win32
           item[itemKey] = item[itemKey].replace(/\//g,'\\');
+        }
+          // HACK: Correct expected path when running tests for 1.3 simulator on darwin
+        if (process.platform === 'darwin' && item.version === '1.3') {
+          item.bin = item.bin.replace('%BINARY%', currentPlatform.simulatorBinary.version1x3);
         }
       }
     }
