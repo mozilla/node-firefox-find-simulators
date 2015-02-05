@@ -1,6 +1,6 @@
 {
   "name": "node-firefox-find-simulators",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Find installed Firefox OS simulators",
   "main": "index.js",
   "dependencies": {
