@@ -19,42 +19,36 @@ module.exports = {
   },
 
   'darwin': function(test) {
-    // This is here because we use underscores in the paths to these binaries.
-    /*jshint camelcase: false*/
-    testDeepEqualPaths(test, platform('darwin'), {
-      firefoxProfilesDir: '/home/testuser/Library/Application Support/Firefox/Profiles',
-      simulatorBinary: {
-        standardPath: 'b2g/B2G.app/Contents/MacOS/b2g-bin',
-        version1_2: 'resources/fxos_1_2_simulator/data/mac64/B2G.app/Contents/MacOS/b2g-bin',
-        version1_3: 'resources/fxos_1_3_simulator/data/mac64/B2G.app/Contents/MacOS/b2g-bin'
-      }
+    testPlatformPaths(test, platform('darwin'), {
+      firefoxProfilesDir: '/home/testuser/Library/Application Support/Firefox/Profiles'
     });
     test.done();
   },
 
   'linux': function(test) {
-    testDeepEqualPaths(test, platform('linux'), {
-      firefoxProfilesDir: '/home/testuser/.mozilla/firefox',
-      simulatorBinary: 'b2g/b2g-bin'
+    testPlatformPaths(test, platform('linux'), {
+      firefoxProfilesDir: '/home/testuser/.mozilla/firefox'
     });
     test.done();
   },
 
   'win32': function(test) {
-    testDeepEqualPaths(test, platform('win32'), {
+    testPlatformPaths(test, platform('win32'), {
       // HACK: On posix platforms, path.join results in this
-      firefoxProfilesDir: 'C:\\Users\\testuser/AppData\\Roaming\\Mozilla\\Firefox\\Profiles',
-      simulatorBinary: 'b2g\\b2g-bin.exe'
+      firefoxProfilesDir: 'C:\\Users\\testuser/AppData\\Roaming\\Mozilla\\Firefox\\Profiles'
     });
     test.done();
   }
 
 };
 
-function testDeepEqualPaths(test, result, expected) {
+function testPlatformPaths(test, result, expected) {
+  test.expect(2);
   if (process.platform === 'win32') {
     // HACK: Correct expected path when running tests on win32
     expected.firefoxProfilesDir = expected.firefoxProfilesDir.replace(/\//g,'\\');
   }
-  return test.deepEqual(result, expected);
+
+  test.ok(result.simulatorBinary && typeof result.simulatorBinary === 'function');
+  test.equal(result.firefoxProfilesDir, expected.firefoxProfilesDir);
 }

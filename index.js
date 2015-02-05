@@ -60,12 +60,8 @@ function getSimulatorInfo(extensionDir) {
   var simulatorRegex = /fxos_(.*)_simulator@mozilla\.org$/;
   var matches = simulatorRegex.exec(extensionDir);
   if (matches && matches[1]) {
+    binaryDir = currentPlatform.simulatorBinary(matches[1], process.arch);
     var version = matches[1].replace('_', '.');
-
-    if (process.platform === 'darwin') {
-      binaryDir = binaryDir['version' + matches[1]] || binaryDir.standardPath;
-    }
-
     return {
       version: version,
       bin: path.join(extensionDir, binaryDir),
