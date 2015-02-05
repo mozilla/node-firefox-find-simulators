@@ -19,8 +19,6 @@ module.exports = {
   },
 
   'darwin': function(test) {
-    // This is here because we use underscores in the paths to these binaries.
-    /*jshint camelcase: false*/
     testPlatformPaths(test, platform('darwin'), {
       firefoxProfilesDir: '/home/testuser/Library/Application Support/Firefox/Profiles'
     });
