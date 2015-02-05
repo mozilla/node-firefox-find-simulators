@@ -45,12 +45,13 @@ module.exports = {
       for (var itemKey in item) {
         for (var varKey in vars) {
           var computedValue;
-          if (typeof vars[varKey] === 'function') {
-            computedValue = vars[varKey].call(item, item.version.replace('.', '_')); 
-          }
-          else {
+
+          if (varKey === 'BINARY') {
+            computedValue = vars.BINARY.call(item, item.version.replace('.', '_'), process.arch);
+          } else {
             computedValue = vars[varKey];
           }
+
           item[itemKey] = item[itemKey].replace('%' + varKey + '%', computedValue);
         }
         if (process.platform === 'win32') {
