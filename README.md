@@ -8,8 +8,6 @@ This is part of the [node-firefox](https://github.com/mozilla/node-firefox) proj
 
 ## Current limitations
 
-We do not support Windows yet. But there are placeholders in the code marked with `TODO: Windows` that indicate where the Windows code would need to be added. If you want to contribute, those are the *gaps* that need to be filled in order for this to work on Windows.
-
 **NOTE**
 
 *This is a work in progress. Things will probably be missing and broken while we move from `fxos-simulators` to `node-firefox-find-simulators`. Please have a look at the [existing issues](https://github.com/mozilla/node-firefox-find-simulators/issues), and/or [file more](https://github.com/mozilla/node-firefox-find-simulators/issues/new) if you find any! :-)*
